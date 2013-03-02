@@ -1,35 +1,46 @@
 from django.contrib.auth.models import User
 
 from tastypie import fields
+from tastypie.api import Api
 from tastypie.authentication import SessionAuthentication
-from tastypie.authorization import Authorization
+from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
-from .models import Payment
+from .models import Payment, Friend
 
 class UserResourceMixin(object):
     def obj_create(self, bundle, request=None, **kwargs):
         return super(EnvironmentResource, self).obj_create(bundle, request, user=request.user)
 
-    def apply_authorization_limits(self, request, object_list):
-        return object_list.filter(user=request.user)
+    def authorized_read_list(self, object_list, bundle):
+        return object_list.filter(user=bundle.request.user)
 
 
-class PaymentResource(ModelResource, UserResourceMixin):
+class PaymentResource(UserResourceMixin, ModelResource):
     shared_with = fields.ToManyField('pennycount.api.UserResource', 'shared_with', full=True)
 
     class Meta:
         queryset = Payment.objects.all()
-        resource_name = 'payment'
-        list_allowed_methods = ['get', 'post']
-        authorization = Authorization()
+        authorization = DjangoAuthorization()
         authentication = SessionAuthentication()
 
-class UserResource(ModelResource, UserResourceMixin):
+
+class UserResource(UserResourceMixin, ModelResource):
     class Meta:
         queryset = User.objects.all()
-        resource_name = 'user'
         fields = ['username', 'first_name', 'last_name', 'email']
-        list_allowed_methods = ['get', 'post']
-        authorization = Authorization()
+        authorization = DjangoAuthorization()
         authentication = SessionAuthentication()
+
+class FriendResource(UserResourceMixin, ModelResource):
+    friend = fields.ForeignKey('pennycount.api.UserResource', 'friend', full=True)
+
+    class Meta:
+        queryset = Friend.objects.all()
+        authorization = DjangoAuthorization()
+        authentication = SessionAuthentication()
+
+v1_api = Api(api_name='v1')
+v1_api.register(PaymentResource())
+v1_api.register(UserResource())
+v1_api.register(FriendResource())

@@ -1,16 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from tastypie.api import Api
-
-from .api import PaymentResource, UserResource
+from .api import v1_api
 
 admin.autodiscover()
-
-v1_api = Api(api_name='v1')
-v1_api.register(PaymentResource())
-v1_api.register(UserResource())
-
 
 urlpatterns = patterns('',
     url(r'^$', 'pennycount.views.index'),
