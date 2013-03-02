@@ -3,12 +3,13 @@ from django.contrib import admin
 
 from tastypie.api import Api
 
-from .api import PaymentResource
+from .api import PaymentResource, UserResource
 
 admin.autodiscover()
 
 v1_api = Api(api_name='v1')
 v1_api.register(PaymentResource())
+v1_api.register(UserResource())
 
 
 urlpatterns = patterns('',

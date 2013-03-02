@@ -1,0 +1,75 @@
+[
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "sttwister", 
+    "first_name": "Felix", 
+    "last_name": "Kerekes", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2013-03-02T15:17:08Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$10000$BNdDDQmLikw5$QVDUSQOiItmFBT70XKZe5wMhblHnkQAcw64QTh5hYdg=", 
+    "email": "sttwister@gmail.com", 
+    "date_joined": "2013-03-02T15:17:02Z"
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "spiri", 
+    "first_name": "Alexandru", 
+    "last_name": "Spiridon", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2013-03-02T15:25:48Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$10000$aFm119k1jcs1$4PriaskWA9zhlNQMtqdHtSs12tlgDiRWxUVXS9dFT5w=", 
+    "email": "spiridon.g.alex@gmail.com", 
+    "date_joined": "2013-03-02T15:25:48Z"
+  }
+},
+{
+  "pk": 1, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "shared_with": [
+      1, 
+      2
+    ], 
+    "user": 1, 
+    "value": 62.0, 
+    "title": "Factura net"
+  }
+},
+{
+  "pk": 2, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "shared_with": [
+      2
+    ], 
+    "user": 1, 
+    "value": 12.0, 
+    "title": "Da-mi bani Spiri"
+  }
+},
+{
+  "pk": 3, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "shared_with": [
+      1
+    ], 
+    "user": 2, 
+    "value": 432.0, 
+    "title": "Da-mi bani Felix"
+  }
+}
+]

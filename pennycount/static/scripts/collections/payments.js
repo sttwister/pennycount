@@ -12,6 +12,7 @@ var app = app || {};
 
 		// Reference to this collection's model.
 		model: app.Payment,
+        url: "/api/v1/payment/",
 
 		// We keep the Payments in sequential order, despite being saved by unordered
 		// GUID in the database. This generates the next order number for new items.
