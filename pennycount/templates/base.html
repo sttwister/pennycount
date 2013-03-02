@@ -4,11 +4,24 @@
         <title>My Sample Project</title>
         <!-- data-main attribute tells require.js to load
              scripts/main.js after require.js loads. -->
-             <script data-main="static/scripts/main" src="static/scripts/require.js"></script>
     </head>
     <body>
       {% block content %}
         <h1>My Sample Project</h1>
       {% endblock %}
+      {# Lib #}
+      <script src="/static/scripts/lib/jquery-1.9.1.min.js"></script>
+      <script src="/static/scripts/lib/underscore-min.js"></script>
+      <script src="/static/scripts/lib/backbone-min.js"></script>
+      <script src="/static/scripts/lib/backbone-tastypie.js"></script>
+      <script src="/static/scripts/lib/backbone_offline.js"></script>
+
+      {# Application #}
+      <script src="/static/scripts/main.js"></script>
+
+      <script src="/static/scripts/models/payment.js"></script>
+      <script src="/static/scripts/collections/payments.js"></script>
+      <script src="/static/scripts/views/app.js"></script>
+      <script src="/static/scripts/routers/router.js"></script>
     </body>
 </html>
