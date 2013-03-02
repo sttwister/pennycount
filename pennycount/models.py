@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class GroupPayment(models.Model):
     user = models.ForeignKey(User, related_name='payments_added')
@@ -9,6 +11,15 @@ class GroupPayment(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def create_payments(self):
+        user_count = self.shared_with.count()
+        for user in self.shared_with.all():
+            payment = Payment()
+            payment.group_payment = self
+            payment.user = user
+            payment.value = self.value / user_count
+            payment.save()
 
 class Payment(models.Model):
     group_payment = models.ForeignKey(GroupPayment)
