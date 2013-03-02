@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'pennycount.views.index'),
+    url(r'^friends/$', 'pennycount.views.friends'),
     url(r'^api/', include(v1_api.urls)),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

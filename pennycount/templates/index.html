@@ -25,4 +25,12 @@
 			<strong>Total: <%= total %></strong>
 		</span>
 	</script>
+
+<input type="text" id="friends-input" name="blah" />
+<input type="button" value="Submit" />
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#friends-input").tokenInput("/friends");
+});
+</script>
 {% endblock %}

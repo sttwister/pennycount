@@ -1,10 +1,19 @@
+{% load compress %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>My Sample Project</title>
         <link rel="stylesheet" href="/static/assets/base.css">
+        {% compress css %}
+        <link rel="stylesheet" type="text/less" media="all" href="/static/assets/style.less" />
+        {% endcompress %}
+
+        <link rel="stylesheet" href="/static/assets/token-input/token-input.css">
         <!-- data-main attribute tells require.js to load
              scripts/main.js after require.js loads. -->
+
+      <script src="/static/scripts/lib/jquery-1.9.1.min.js"></script>
     </head>
     <body>
       {% block content %}
@@ -12,8 +21,8 @@
       {% endblock %}
 
       {# Lib #}
-      <script src="/static/scripts/lib/jquery-1.9.1.min.js"></script>
       <script src="/static/scripts/lib/jquery.cookie.js"></script>
+      <script src="/static/scripts/lib/jquery.tokeninput.js"></script>
       <script src="/static/scripts/lib/underscore-min.js"></script>
       <script src="/static/scripts/lib/backbone-min.js"></script>
       <script src="/static/scripts/lib/backbone-tastypie.js"></script>
