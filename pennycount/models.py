@@ -23,7 +23,6 @@ class GroupPayment(models.Model):
                 payment.value = self.value / user_count
                 payment.save()
 
-
 class Payment(models.Model):
     group_payment = models.ForeignKey(GroupPayment)
     user = models.ForeignKey(User, related_name='payments')

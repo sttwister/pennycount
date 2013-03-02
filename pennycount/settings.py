@@ -189,7 +189,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 COMPRESS_PRECOMPILERS = (
-   ('text/less', 'lessc {infile} {outfile}'),
+   ('text/less', 'lessc "{infile}" "{outfile}"'),
 )
 COMPRESS_ENABLED = True
 COMPRESS_ROOT = STATIC_ROOT
