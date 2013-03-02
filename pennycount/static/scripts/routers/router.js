@@ -16,6 +16,7 @@ var app = app || {};
     app.Router.on('route:defaultRoute', function(actions) {
         alert('omg');
     });
+
 	Backbone.history.start();
 
 }());
