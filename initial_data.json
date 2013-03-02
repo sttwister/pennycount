@@ -37,7 +37,7 @@
 },
 {
   "pk": 1, 
-  "model": "pennycount.payment", 
+  "model": "pennycount.grouppayment", 
   "fields": {
     "shared_with": [
       1, 
@@ -50,7 +50,7 @@
 },
 {
   "pk": 2, 
-  "model": "pennycount.payment", 
+  "model": "pennycount.grouppayment", 
   "fields": {
     "shared_with": [
       2
@@ -62,7 +62,7 @@
 },
 {
   "pk": 3, 
-  "model": "pennycount.payment", 
+  "model": "pennycount.grouppayment", 
   "fields": {
     "shared_with": [
       1
@@ -70,6 +70,42 @@
     "user": 2, 
     "value": 432.0, 
     "title": "Da-mi bani Felix"
+  }
+},
+{
+  "pk": 1, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "group_payment": 3, 
+    "user": 1, 
+    "value": 432.0
+  }
+},
+{
+  "pk": 2, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "group_payment": 2, 
+    "user": 2, 
+    "value": 12.0
+  }
+},
+{
+  "pk": 3, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "group_payment": 1, 
+    "user": 1, 
+    "value": 31.0
+  }
+},
+{
+  "pk": 4, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "group_payment": 1, 
+    "user": 2, 
+    "value": 31.0
   }
 },
 {

@@ -6,7 +6,7 @@ from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 
-from .models import Payment, Friend
+from .models import GroupPayment, Payment, Friend
 
 class UserResourceMixin(object):
     def obj_create(self, bundle, request=None, **kwargs):
@@ -16,8 +16,17 @@ class UserResourceMixin(object):
         return object_list.filter(user=bundle.request.user)
 
 
-class PaymentResource(UserResourceMixin, ModelResource):
+class GroupPaymentResource(UserResourceMixin, ModelResource):
     shared_with = fields.ToManyField('pennycount.api.UserResource', 'shared_with', full=True)
+
+    class Meta:
+        queryset = GroupPayment.objects.all()
+        authorization = DjangoAuthorization()
+        authentication = SessionAuthentication()
+
+class PaymentResource(UserResourceMixin, ModelResource):
+    group_payment = fields.ToManyField('pennycount.api.GroupPaymentResource', 'shared_with', full=True)
+    user = fields.ToManyField('pennycount.api.UserResource', 'shared_with', full=True)
 
     class Meta:
         queryset = Payment.objects.all()
@@ -41,6 +50,7 @@ class FriendResource(UserResourceMixin, ModelResource):
         authentication = SessionAuthentication()
 
 v1_api = Api(api_name='v1')
+v1_api.register(GroupPaymentResource())
 v1_api.register(PaymentResource())
 v1_api.register(UserResource())
 v1_api.register(FriendResource())
