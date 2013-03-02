@@ -35,7 +35,7 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
 
         result = super(GroupPaymentResource, self).obj_create(bundle, user=bundle.request.user, **kwargs)
 
-        for email in bundle.data['emails']:
+        for email in bundle.data.get('emails', []):
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
