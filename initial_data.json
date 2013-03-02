@@ -71,5 +71,21 @@
     "value": 432.0, 
     "title": "Da-mi bani Felix"
   }
+},
+{
+  "pk": 1, 
+  "model": "pennycount.friend", 
+  "fields": {
+    "user": 1, 
+    "friend": 2
+  }
+},
+{
+  "pk": 2, 
+  "model": "pennycount.friend", 
+  "fields": {
+    "user": 2, 
+    "friend": 1
+  }
 }
 ]
