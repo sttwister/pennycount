@@ -120,6 +120,7 @@ INSTALLED_APPS = (
 
     'pennycount',
 
+    'social_auth',
     'tastypie',
 )
 
@@ -153,3 +154,29 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login'
+
+LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+GOOGLE_OAUTH2_CLIENT_ID      = '46748344285'
+GOOGLE_OAUTH2_CLIENT_SECRET  = 'ploDRw_M9aBJlK3iuOjrWGbH'
+
+FACEBOOK_APP_ID              = '131387693706055'
+FACEBOOK_API_SECRET          = 'a6a0b217399cfbea8de1225a12a178ff'
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)
