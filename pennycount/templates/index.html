@@ -14,11 +14,10 @@
 	<script type="text/template" id="item-template">
 		<div class="view">
 			<input class="toggle" type="checkbox">
-			<label><%- group_payment.title %></label>
-			<label class="userlabel"><%- group_payment.user.first_name + " " + group_payment.user.last_name %></label>
+			<label><%- to_user.first_name + " " + to_user.last_name %></label>
+			<label class="userlabel">Total: <%- value %></label>
 			<button class="destroy"></button>
 		</div>
-		<input class="edit" value="<%- title %>">
 	</script>
 	<script type="text/template" id="total-template">
 		<span id="total-sum">

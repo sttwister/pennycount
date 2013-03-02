@@ -7,7 +7,7 @@ $(function() {
 	// --------------
 
 	// The DOM element for a todo item...
-	app.PaymentView = Backbone.View.extend({
+	app.UserPaymentView = Backbone.View.extend({
 
 		//... is a list tag.
 		tagName:  'li',
