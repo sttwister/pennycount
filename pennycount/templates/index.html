@@ -15,7 +15,7 @@
 	<script type="text/template" id="item-template">
 		<div class="view">
 			<input class="toggle" type="checkbox">
-			<label><%- to_user.first_name + " " + to_user.last_name %></label>
+			<label><%- from_user.first_name + " " + from_user.last_name %></label>
 			<label class="userlabel">Total: <%- value %></label>
 			<button class="destroy"></button>
 		</div>
@@ -27,11 +27,13 @@
 		</span>
 	</script>
 
-<input type="text" id="friends-input" name="blah" />
-<input type="button" value="Submit" />
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#friends-input").tokenInput("/friends");
-});
-</script>
+  <input type="text" id="friends-input" name="blah" />
+  <input type="button" value="Submit" />
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#friends-input").tokenInput("/friends", {
+      preventDuplicates: true
+    });
+  });
+  </script>
 {% endblock %}
