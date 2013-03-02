@@ -36,15 +36,34 @@
   }
 },
 {
+  "pk": 3, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "seven", 
+    "first_name": "Catalin", 
+    "last_name": "Pintea", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2013-03-02T15:25:48Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$10000$aFm119k1jcs1$4PriaskWA9zhlNQMtqdHtSs12tlgDiRWxUVXS9dFT5w=", 
+    "email": "seven.7mm@gmail.com", 
+    "date_joined": "2013-03-02T15:25:48Z"
+  }
+},
+{
   "pk": 1, 
   "model": "pennycount.grouppayment", 
   "fields": {
     "shared_with": [
       1, 
-      2
+      2,
+      3
     ], 
     "user": 1, 
-    "value": 62.0, 
+    "value": 63.0, 
     "title": "Factura net"
   }
 },
@@ -96,6 +115,15 @@
   "fields": {
     "group_payment": 1, 
     "user": 2, 
+    "value": 21.0
+  }
+},
+{
+  "pk": 4, 
+  "model": "pennycount.payment", 
+  "fields": {
+    "group_payment": 1, 
+    "user": 3, 
     "value": 31.0
   }
 },
@@ -111,8 +139,40 @@
   "pk": 2, 
   "model": "pennycount.friend", 
   "fields": {
+    "user": 1, 
+    "friend": 3
+  }
+},
+{
+  "pk": 3, 
+  "model": "pennycount.friend", 
+  "fields": {
     "user": 2, 
     "friend": 1
+  }
+},
+{
+  "pk": 4, 
+  "model": "pennycount.friend", 
+  "fields": {
+    "user": 2, 
+    "friend": 3
+  }
+},
+{
+  "pk": 5, 
+  "model": "pennycount.friend", 
+  "fields": {
+    "user": 3, 
+    "friend": 1
+  }
+},
+{
+  "pk": 6, 
+  "model": "pennycount.friend", 
+  "fields": {
+    "user": 3, 
+    "friend": 2
   }
 }
 ]
