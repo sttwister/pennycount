@@ -13,9 +13,12 @@ $(function( $ ) {
 	// the App already present in the HTML.
 	el: '#main',
 
+	totalTemplate: _.template( $('#total-template').html() ),
+
     initialize: function() {
       console.log('initialize');
       this.$main = this.$('#main');
+      this.$footer = this.$('#footer');
 
       this.listenTo(app.Payments, 'reset', this.addAll)
       this.listenTo(app.Payments, 'sync', this.render);
@@ -44,6 +47,9 @@ $(function( $ ) {
 			this.$main.hide();
 			this.$footer.hide();
 		}
+		this.$footer.html(this.totalTemplate({
+				total: 123
+			}));
 
 		//this.allCheckbox.checked = false;
     },
