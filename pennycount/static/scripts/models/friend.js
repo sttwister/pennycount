@@ -6,13 +6,9 @@ var app = app || {};
 	// Friend Model
 	// ----------
 
-	// Our basic **Friend** model has `name` attribute.
+	// Our basic **Friend** model.
 	app.Friend = Backbone.Model.extend({
-
-		// Default attributes
-		defaults: {
-			name: ''
-		}
+		urlRoot: '/api/v1/friend'
 	});
 
 }());

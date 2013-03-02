@@ -6,17 +6,9 @@ var app = app || {};
 	// Payment Model
 	// ----------
 
-	// Our basic **Payment** model has `user`, `title`, and `value` attributes.
+	// Our basic **Payment** model.
 	app.Payment = Backbone.Model.extend({
-
-        urlRoot: '/api/v1/payment',
-
-		// Default attributes
-		defaults: {
-			title: '',
-			value: 0
-		},
-
+        urlRoot: '/api/v1/payment'
 	});
 
 }());

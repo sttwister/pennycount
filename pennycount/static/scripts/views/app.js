@@ -17,61 +17,45 @@ $(function( $ ) {
 
     initialize: function() {
       console.log('initialize');
+
       this.$main = this.$('#main');
-      this.$footer = this.$('#footer');
+      this.$footer = this.$('#togivefooter');
 
-      this.listenTo(app.Payments, 'reset', this.addAll)
-      this.listenTo(app.Payments, 'sync', this.render);
+      this.listenTo(app.UserPayments, 'reset', this.addAll)
+  	  this.listenTo(app.UserPayments, 'sync', this.render);
 
-      app.Payments.fetch();
-      app.Friends.fetch();
-
-      console.log(app.Friends.at(0));
+      app.UserPayments.fetch();
     },
 
     render: function() {
-		if ( app.Payments.length ) {
+    	console.log('render');
+
+		if ( app.UserPayments.length ) {
 			this.$main.show();
-			/*this.$footer.show();
-
-			this.$footer.html(this.statsTemplate({
-				completed: completed,
-				remaining: remaining
-			}));
-
-			this.$('#filters li a')
-				.removeClass('selected')
-				.filter('[href="#/' + ( app.TodoFilter || '' ) + '"]')
-				.addClass('selected'); */
+			this.$footer.show();
 		} else {
 			this.$main.hide();
 			this.$footer.hide();
 		}
+
 		this.$footer.html(this.totalTemplate({
 				total: 123
 			}));
-
-		//this.allCheckbox.checked = false;
     },
 
-    // Add a single todo item to the list by creating a view for it, and
+    // Add a single user payment item to the list by creating a view for it, and
 	// appending its element to the `<ul>`.
-	addOne: function( payment ) {
-		console.log("PAYMENT: ");
-		console.log(payment);
-		var view = new app.PaymentView({ model: payment });
+	addOne: function( userpayment ) {
+		console.log(userpayment);
+
+		var view = new app.PaymentView({ model: userpayment });
 		$('#todo-list').append( view.render().el );
 	},
 
-	// Add all items in the **Todos** collection at once.
+	// Add all items in the **UserPayments** collection at once.
 	addAll: function() {
 		this.$('#todo-list').html('');
-		app.Payments.each(this.addOne, this);
-	},
-
-    getFriends: function ()
-    {
-    	console.log('get friends');
-    }
+		app.UserPayments.each(this.addOne, this);
+	}
   });
 });

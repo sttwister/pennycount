@@ -10,21 +10,7 @@ var app = app || {};
 
 		// Reference to this collection's model.
 		model: app.Friend,
-        url: "/api/v1/friend/",
-
-		// We keep the Payments in sequential order, despite being saved by unordered
-		// GUID in the database. This generates the next order number for new items.
-		nextOrder: function() {
-			if ( !this.length ) {
-				return 1;
-			}
-			return this.last().get('order') + 1;
-		},
-
-		// Payments are sorted by their original insertion order.
-		comparator: function( todo ) {
-			return todo.get('order');
-		}
+        url: "/api/v1/friend/"
 	});
 
 	// Create our global collection of **Friends**.

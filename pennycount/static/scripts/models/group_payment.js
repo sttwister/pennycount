@@ -6,16 +6,9 @@ var app = app || {};
 	// GroupPayment Model
 	// ----------
 
-	// Our basic **GroupPayment** model has `user`, `title`, and `value` attributes.
+	// Our basic **GroupPayment** model.
 	app.GroupPayment = Backbone.Model.extend({
-        urlRoot: '/api/v1/grouppayment',
-
-		// Default attributes
-		defaults: {
-			title: '',
-			value: 0
-		},
-
+        urlRoot: '/api/v1/grouppayment'
 	});
 
 }());

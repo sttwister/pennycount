@@ -219,6 +219,7 @@ body {
 	border-top: 1px dotted #adadad;
 }
 
+
 label[for='toggle-all'] {
 	display: none;
 }
@@ -368,7 +369,7 @@ label[for='toggle-all'] {
 	margin-bottom: -1px;
 }
 
-#footer {
+div.footer {
 	color: #777;
 	padding: 0 15px;
 	position: absolute;
@@ -380,7 +381,7 @@ label[for='toggle-all'] {
 	text-align: right;
 }
 
-#footer:before {
+div.footer:before {
 	content: '';
 	position: absolute;
 	right: 0;
