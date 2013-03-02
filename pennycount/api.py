@@ -1,4 +1,9 @@
+import uuid
+
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.db.models import Q
 
 from tastypie import fields
 from tastypie.api import Api
@@ -15,7 +20,7 @@ class UserResourceMixin(object):
 
 
 class GroupPaymentResource(UserResourceMixin, ModelResource):
-    shared_with = fields.ToManyField('pennycount.api.UserResource', 'shared_with', full=True)
+    shared_with = fields.ToManyField('pennycount.api.UserResource', 'shared_with', full=True, null=True)
     user = fields.ForeignKey('pennycount.api.UserResource', 'user', full=True)
 
     class Meta:
@@ -25,8 +30,21 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
         always_return_data = True
 
     def obj_create(self, bundle, **kwargs):
+        for email in bundle.data['emails']:
+            validate_email(email)
+
         result = super(GroupPaymentResource, self).obj_create(bundle, user=bundle.request.user, **kwargs)
+
+        for email in bundle.data['emails']:
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                user = User.objects.create(email=email, username=str(uuid.uuid4()))
+
+            bundle.obj.shared_with.add(user)
+
         bundle.obj.create_payments()
+
         return result
 
 class PaymentResource(UserResourceMixin, ModelResource):
@@ -66,6 +84,10 @@ class UserPaymentResource(ModelResource):
         authorization = DjangoAuthorization()
         authentication = SessionAuthentication()
         always_return_data = True
+
+    def authorized_read_list(self, object_list, bundle):
+        user = bundle.request.user
+        return object_list.filter(to_user=user)
 
 v1_api = Api(api_name='v1')
 v1_api.register(GroupPaymentResource())
