@@ -6,11 +6,12 @@
 		<header id="header">
 			<h1>To give</h1>
 		</header>
-		<section id="main">
-			<ul id="todo-list"></ul>
-		</section>
+		
+		<ul id="userpayment-list"></ul>
+
 		<div class="footer" id="togivefooter"></div>
 	</section>
+
 	<script type="text/template" id="item-template">
 		<div class="view">
 			<input class="toggle" type="checkbox">
@@ -19,6 +20,7 @@
 			<button class="destroy"></button>
 		</div>
 	</script>
+
 	<script type="text/template" id="total-template">
 		<span id="total-sum">
 			<strong>Total: <%= total %></strong>
