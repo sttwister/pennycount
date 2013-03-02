@@ -49,12 +49,12 @@ $(function( $ ) {
 		console.log(userpayment);
 
 		var view = new app.UserPaymentView({ model: userpayment });
-		$('#todo-list').append( view.render().el );
+		$('#userpayment-list').append( view.render().el );
 	},
 
 	// Add all items in the **UserPayments** collection at once.
 	addAll: function() {
-		this.$('#todo-list').html('');
+		this.$('#userpayment-list').html('');
 		app.UserPayments.each(this.addOne, this);
 	}
   });

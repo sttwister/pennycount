@@ -16,9 +16,10 @@
       <script src="/static/scripts/lib/jquery-1.9.1.min.js"></script>
     </head>
     <body>
-      {% block content %}
-        <h1>My Sample Project</h1>
-      {% endblock %}
+      <div class="wrapper">
+        {% block content %}
+        {% endblock %}
+      </div>
 
       {# Lib #}
       <script src="/static/scripts/lib/jquery.cookie.js"></script>
