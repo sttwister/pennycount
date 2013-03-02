@@ -12,6 +12,15 @@ class GroupPayment(models.Model):
     def __unicode__(self):
         return self.title
 
+    def create_payments(self):
+        user_count = self.shared_with.count()
+        for user in self.shared_with.all():
+            payment = Payment()
+            payment.group_payment = self
+            payment.user = user
+            payment.value = self.value / user_count
+            payment.save()
+
 class Payment(models.Model):
     group_payment = models.ForeignKey(GroupPayment)
     user = models.ForeignKey(User, related_name='')
@@ -23,16 +32,3 @@ class Payment(models.Model):
 class Friend(models.Model):
     user = models.ForeignKey(User, related_name='friends')
     friend = models.ForeignKey(User)
-
-@receiver(post_save, sender=GroupPayment)
-def group_payment_post_save(sender, instance, created, raw, **kwargs):
-    print instance, created, raw
-    # Model is newly created, but not from fixture
-    if created and not raw:
-        user_count = instance.shared_with.count()
-        for user in instance.shared_with.all():
-            payment = Payment()
-            payment.group_payment = instance
-            payment.user = user
-            payment.value = group_payment.value / user_count
-            payment.save()

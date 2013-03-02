@@ -26,6 +26,11 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
         authentication = SessionAuthentication()
         always_return_data = True
 
+    def obj_create(self, bundle, **kwargs):
+        result = super(GroupPaymentResource, self).obj_create(bundle, **kwargs)
+        bundle.obj.create_payments()
+        return result
+
 class PaymentResource(UserResourceMixin, ModelResource):
     group_payment = fields.ForeignKey('pennycount.api.GroupPaymentResource', 'group_payment', full=True)
     user = fields.ForeignKey('pennycount.api.UserResource', 'user', full=True)
