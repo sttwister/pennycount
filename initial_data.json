@@ -95,15 +95,6 @@
   "model": "pennycount.payment", 
   "fields": {
     "group_payment": 1, 
-    "user": 1, 
-    "value": 31.0
-  }
-},
-{
-  "pk": 4, 
-  "model": "pennycount.payment", 
-  "fields": {
-    "group_payment": 1, 
     "user": 2, 
     "value": 31.0
   }

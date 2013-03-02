@@ -4,14 +4,11 @@ from tastypie import fields
 from tastypie.api import Api
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import DjangoAuthorization
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, Resource
 
-from .models import GroupPayment, Payment, Friend
+from .models import GroupPayment, Payment, UserPayment, Friend
 
 class UserResourceMixin(object):
-
-    def obj_create(self, bundle, **kwargs):
-        return super(UserResourceMixin, self).obj_create(bundle, user=bundle.request.user)
 
     def authorized_read_list(self, object_list, bundle):
         return object_list.filter(user=bundle.request.user)
@@ -28,7 +25,7 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
         always_return_data = True
 
     def obj_create(self, bundle, **kwargs):
-        result = super(GroupPaymentResource, self).obj_create(bundle, **kwargs)
+        result = super(GroupPaymentResource, self).obj_create(bundle, user=bundle.request.user, **kwargs)
         bundle.obj.create_payments()
         return result
 
@@ -43,7 +40,7 @@ class PaymentResource(UserResourceMixin, ModelResource):
         always_return_data = True
 
 
-class UserResource(UserResourceMixin, ModelResource):
+class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         fields = ['username', 'first_name', 'last_name', 'email']
@@ -60,8 +57,19 @@ class FriendResource(UserResourceMixin, ModelResource):
         authentication = SessionAuthentication()
         always_return_data = True
 
+class UserPaymentResource(ModelResource):
+    from_user = fields.ForeignKey('pennycount.api.UserResource', 'from_user', full=True)
+    to_user = fields.ForeignKey('pennycount.api.UserResource', 'to_user', full=True)
+
+    class Meta:
+        queryset = UserPayment.objects.all()
+        authorization = DjangoAuthorization()
+        authentication = SessionAuthentication()
+        always_return_data = True
+
 v1_api = Api(api_name='v1')
 v1_api.register(GroupPaymentResource())
 v1_api.register(PaymentResource())
 v1_api.register(UserResource())
 v1_api.register(FriendResource())
+v1_api.register(UserPaymentResource())
