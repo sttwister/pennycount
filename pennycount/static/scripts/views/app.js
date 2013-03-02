@@ -48,7 +48,7 @@ $(function( $ ) {
 	addOne: function( userpayment ) {
 		console.log(userpayment);
 
-		var view = new app.PaymentView({ model: userpayment });
+		var view = new app.UserPaymentView({ model: userpayment });
 		$('#todo-list').append( view.render().el );
 	},
 
