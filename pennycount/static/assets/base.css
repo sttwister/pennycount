@@ -326,7 +326,6 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .destroy {
-	display: none;
 	position: absolute;
 	top: 0;
 	right: 10px;
@@ -354,7 +353,7 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .destroy:after {
-	content: '✖';
+	content: '>>';
 }
 
 #todo-list li:hover .destroy {
@@ -378,7 +377,7 @@ label[for='toggle-all'] {
 	left: 0;
 	height: 20px;
 	z-index: 1;
-	text-align: center;
+	text-align: right;
 }
 
 #footer:before {

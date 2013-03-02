@@ -14,7 +14,7 @@ var app = app || {};
 
 	app.Router = new Workspace();
     app.Router.on('route:defaultRoute', function(actions) {
-        alert('omg');
+
     });
 
 	Backbone.history.start();

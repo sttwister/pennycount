@@ -4,12 +4,9 @@
 
 	<section id="main">
 		<header id="header">
-			<h1>todos</h1>
-			<input id="new-todo" placeholder="What needs to be done?" autofocus>
+			<h1>My debts</h1>
 		</header>
 		<section id="main">
-			<input id="toggle-all" type="checkbox">
-			<label for="toggle-all">Mark all as complete</label>
 			<ul id="todo-list"></ul>
 		</section>
 		<footer id="footer"></footer>
@@ -19,37 +16,16 @@
 		<p>Written by <a href="https://github.com/addyosmani">Addy Osmani</a></p>
 		<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 	</div>
-	<script type="text/template" id="friend-template">
-		<div class="view">
-      <p>This is a friend!</p>
-			<button class="destroy"></button>
-		</div>
-		<input class="edit" value="<%- title %>">
-	</script>
 	<script type="text/template" id="item-template">
 		<div class="view">
-			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-			<label><%- title %></label>
+			<input class="toggle" type="checkbox">
+			<label><%- group_payment.title %></label>
+			<label class="userlabel"><%- group_payment.user.first_name + " " + group_payment.user.last_name %></label>
 			<button class="destroy"></button>
 		</div>
 		<input class="edit" value="<%- title %>">
 	</script>
-	<script type="text/template" id="stats-template">
-		<span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
-		<ul id="filters">
-			<li>
-				<a class="selected" href="#/">All</a>
-			</li>
-			<li>
-				<a href="#/active">Active</a>
-			</li>
-			<li>
-				<a href="#/completed">Completed</a>
-			</li>
-		</ul>
-		<% if (completed) { %>
-		<button id="clear-completed">Clear completed (<%= completed %>)</button>
-		<% } %>
+	<script type="text/template" id="total-template">
+		<span id="total-sum"><strong>Total: <%= total %></strong></span>
 	</script>
 {% endblock %}
-

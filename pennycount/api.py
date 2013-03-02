@@ -19,6 +19,7 @@ class UserResourceMixin(object):
 
 class GroupPaymentResource(UserResourceMixin, ModelResource):
     shared_with = fields.ToManyField('pennycount.api.UserResource', 'shared_with', full=True)
+    user = fields.ForeignKey('pennycount.api.UserResource', 'user', full=True)
 
     class Meta:
         queryset = GroupPayment.objects.all()
