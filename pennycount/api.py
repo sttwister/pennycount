@@ -40,6 +40,8 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
                 user = User.objects.create(email=email, username=str(uuid.uuid4()))
+                Friend.objects.create(user=user, friend=bundle.request.user)
+                Friend.objects.create(user=bundle.request.user, friend=user)
 
             bundle.obj.shared_with.add(user)
 
