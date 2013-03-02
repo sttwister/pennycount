@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class GroupPayment(models.Model):
     user = models.ForeignKey(User, related_name='payments_added')
@@ -21,3 +23,16 @@ class Payment(models.Model):
 class Friend(models.Model):
     user = models.ForeignKey(User, related_name='friends')
     friend = models.ForeignKey(User)
+
+@receiver(post_save, sender=GroupPayment)
+def group_payment_post_save(sender, instance, created, raw, **kwargs):
+    print instance, created, raw
+    # Model is newly created, but not from fixture
+    if created and not raw:
+        user_count = instance.shared_with.count()
+        for user in instance.shared_with.all():
+            payment = Payment()
+            payment.group_payment = instance
+            payment.user = user
+            payment.value = group_payment.value / user_count
+            payment.save()
