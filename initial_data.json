@@ -64,6 +64,7 @@
     ], 
     "user": 1, 
     "value": 63.0, 
+    "date_added": "2012-03-20 10:21:15",
     "title": "Factura net"
   }
 },
@@ -76,6 +77,7 @@
     ], 
     "user": 1, 
     "value": 12.0, 
+    "date_added": "2012-03-20 10:21:15",
     "title": "Da-mi bani Spiri"
   }
 },
@@ -88,6 +90,7 @@
     ], 
     "user": 2, 
     "value": 432.0, 
+    "date_added": "2012-03-20 10:21:15",
     "title": "Da-mi bani Felix"
   }
 },

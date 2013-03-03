@@ -9,6 +9,7 @@ class GroupPayment(models.Model):
     title = models.CharField(max_length=2048)
     value = models.FloatField()
     shared_with = models.ManyToManyField(User, related_name='group_payments')
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.title

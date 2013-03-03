@@ -128,6 +128,7 @@ INSTALLED_APPS = (
 
     'compressor',
     'social_auth',
+    #'south',
     'tastypie',
 )
 
