@@ -1,0 +1,9 @@
+Hello, {% if payment.user.first_name %}{{ payment.user.first_name }}{% else %}{{ payment.user.last_name }}{% endif %}
+
+{{ payment.group_payment.user }} added a new payment called "{{ payment.group_payment.title }}" (totalling {{ payment.group_payment.value }})between the following users:
+{% for user in payment.group_payment.users %}
+  - {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.last_name }}{% endif %}
+
+Your share of the payment is {{ payment.value }}.
+
+Go to URL_HERE to view all your pending payments.
