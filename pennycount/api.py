@@ -30,7 +30,7 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
         always_return_data = True
 
     def obj_create(self, bundle, **kwargs):
-        for email in bundle.data['emails']:
+        for email in bundle.data.get('emails', []):
             validate_email(email)
 
         result = super(GroupPaymentResource, self).obj_create(bundle, user=bundle.request.user, **kwargs)

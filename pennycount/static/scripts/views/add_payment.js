@@ -25,6 +25,18 @@ $(function() {
 		addPayment: function() {
 			var payment = new app.GroupPayment();
 
+			var friends = $("#friends-input").tokenInput("get");
+			friends = _.map(friends, function ( friend ) {
+				return {pk:friend.id};
+			});
+
+			payment.set({title: $("#title").val(), 
+				value: $("#value").val(),
+				share_with: friends
+			});
+
+			console.log($("#friends-input").tokenInput("get"));
+
 			payment.save();	
 		}
 	});
