@@ -4,10 +4,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-				<header>
-					Username
-				</header>
-				
 				<ul id="userpayment-list"></ul>
 
 				<div class="footer" id="togivefooter"></div>
@@ -16,11 +12,9 @@
 	</div>
 
 	<script type="text/template" id="item-template">
-		<div class="view">
-			<input class="toggle" type="checkbox">
-			<label><%- from_user.first_name + " " + from_user.last_name %></label>
+		<div class="view box">
+			<h3><%- from_user.first_name + " " + from_user.last_name %></h3>
 			<label class="userlabel">Total: <%- value %></label>
-			<button class="destroy"></button>
 		</div>
 	</script>
 
