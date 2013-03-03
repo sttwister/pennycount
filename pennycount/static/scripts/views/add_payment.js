@@ -32,10 +32,8 @@ $(function() {
 
 			payment.set({title: $("#title").val(), 
 				value: $("#value").val(),
-				share_with: friends
+				shared_with: friends
 			});
-
-			console.log($("#friends-input").tokenInput("get"));
 
 			payment.save();	
 		}

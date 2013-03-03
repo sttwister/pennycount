@@ -20,7 +20,7 @@ class GroupPayment(models.Model):
                 payment = Payment()
                 payment.group_payment = self
                 payment.user = user
-                payment.value = self.value / user_count
+                payment.value = float(self.value) / user_count
                 payment.save()
 
 class Payment(models.Model):
