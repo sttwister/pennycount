@@ -1,9 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<div class="container">
+	<div class="container main">
 		<div class="row">
 			<div class="span12">
+				<div id="add-payment-div">
+				  <div class="pull-right box">
+					<input type="text" id="title" placeholder="Payment name"/>
+					<input type="text" id="value" placeholder="Ammount"/>
+					
+					<br/>
+
+				  	<select multiple id="friends-input" class="chzn-select" data-placeholder="Choose some people to share the payment with"/>
+				  	
+				  	<input type="button" class="add-payment" value="Add Payment" />
+				  </div>
+
+
+				  <script type="text/javascript">
+				  $(document).ready(function() {
+			      $("#friends-input").ajaxChosen({
+			          type: 'GET',
+			          url: '/friends',
+			          dataType: 'json'
+			      }, function (data) {
+			          var results = [];
+
+			          $.each(data, function (i, val) {
+			              results.push({ value: val.id, text: val.name });
+			          });
+
+			          return results;
+			      });
+				  });
+				  </script>
+			  	</div>
+		  	</div>
+		</div>
+		
+		<hr>
+
+		<div class="row">
+			<div class="span6">
 				<ul id="userpayment-list"></ul>
 
 				<div class="footer" id="togivefooter"></div>
@@ -23,30 +61,4 @@
 			<strong>Total: <%= total %></strong>
 		</span>
 	</script>
-
-	<div id="add-payment-div">
-	  <input type="text" id="title"/>
-	  <input type="text" id="value"/>
-    <hr>
-	  <select multiple id="friends-input" class="chzn-select" data-placeholder="Choose some people to share the payment with" style="width:350px;"/>
-
-	  <input type="button" class="add-payment" value="Submit" />
-	  <script type="text/javascript">
-	  $(document).ready(function() {
-      $("#friends-input").ajaxChosen({
-          type: 'GET',
-          url: '/friends',
-          dataType: 'json'
-      }, function (data) {
-          var results = [];
-
-          $.each(data, function (i, val) {
-              results.push({ value: val.id, text: val.name });
-          });
-
-          return results;
-      });
-	  });
-	  </script>
-  	</div>
 {% endblock %}
