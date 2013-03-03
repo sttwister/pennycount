@@ -15,7 +15,6 @@ $(function() {
 		},
 
 		initialize: function() {
-		//	this.render();
 		},
 
 		render: function() {
@@ -36,7 +35,12 @@ $(function() {
 				shared_with: friends
 			});
 
-			payment.save();	
+            payment.save();
+            location.reload();
+
+            $("#title").val("");
+            $("#value").val("");
+            $("#friends-input").val("").trigger("liszt:updated");
 		}
 	});
 });

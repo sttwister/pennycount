@@ -1,29 +1,33 @@
 var app = app || {};
 
 $(function( $ ) {
-	'use strict';
+  'use strict';
 
-	// The Application
-	// ---------------
+  // The Application
+  // ---------------
 
-	// Our overall **AppView** is the top-level piece of UI.
-	app.AppView = Backbone.View.extend({
+  // Our overall **AppView** is the top-level piece of UI.
+  app.AppView = Backbone.View.extend({
 
-	// Instead of generating a new element, bind to the existing skeleton of
-	// the App already present in the HTML.
-	el: '#main',
+    // Instead of generating a new element, bind to the existing skeleton of
+    // the App already present in the HTML.
+    el: '#main',
 
-	totalTemplate: _.template( $('#total-template').html() ),
+    totalTemplate: _.template( $('#total-template').html() ),
 
     initialize: function() {
-      console.log('initialize');
-
       this.$main = this.$('#main');
       this.$footer = this.$('#togivefooter');
 
       this.listenTo(app.UserPayments, 'reset', this.addAll);
-  	  this.listenTo(app.UserPayments, 'sync', this.render);
+      this.listenTo(app.UserPayments, 'sync', this.render);
+      this.listenTo(app.GroupPayments, 'add', this.refreshPayments);
+      this.listenTo(app.GroupPayments, 'remove', this.refreshPayments);
 
+      app.UserPayments.fetch();
+    },
+
+    refreshPayments: function() {
       app.UserPayments.fetch();
 
       this.listenTo(app.Groups, 'sync', this.printGroups);
