@@ -11,7 +11,7 @@ from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource, Resource
 
-from .models import GroupPayment, Payment, UserPayment, Friend
+from .models import GroupPayment, Payment, UserPayment, Friend, Group
 
 class UserResourceMixin(object):
 
@@ -46,6 +46,30 @@ class GroupPaymentResource(UserResourceMixin, ModelResource):
             bundle.obj.shared_with.add(user)
 
         bundle.obj.create_payments()
+
+        return result
+
+class GroupResource(UserResourceMixin, ModelResource):
+    users = fields.ToManyField('pennycount.api.UserResource', 'users', full=True, null=True)
+
+    class Meta:
+        queryset = Group.objects.all()
+        authorization = DjangoAuthorization()
+        authentication = SessionAuthentication()
+        always_return_data = True
+
+    def obj_create(self, bundle, **kwards):
+        for email in bundle.data.get('emails', []):
+            validate_email(email)
+
+        result = super(GroupResource, self).obj_create(bundle, user = bundle.request.user, **kwargs)
+
+        for email in bundle.data.get('emails', []):
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                user = User.objects.create(email=email, username=str(uuid.uuid4()))
+            bundle.objects.users.add(user)
 
         return result
 
@@ -97,3 +121,4 @@ v1_api.register(PaymentResource())
 v1_api.register(UserResource())
 v1_api.register(FriendResource())
 v1_api.register(UserPaymentResource())
+v1_api.register(GroupResource())

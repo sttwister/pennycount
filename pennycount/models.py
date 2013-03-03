@@ -23,6 +23,14 @@ class GroupPayment(models.Model):
                 payment.value = float(self.value) / user_count
                 payment.save()
 
+class Group(models.Model):
+    user = models.ForeignKey(User, related_name='my_groups')
+    users = models.ManyToManyField(User, related_name='belonging_groups')
+    title = models.CharField(max_length=2048)
+
+    def __unicode__(self):
+        return self.title
+
 class Payment(models.Model):
     group_payment = models.ForeignKey(GroupPayment)
     user = models.ForeignKey(User, related_name='payments')

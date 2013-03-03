@@ -21,10 +21,23 @@ $(function( $ ) {
       this.$main = this.$('#main');
       this.$footer = this.$('#togivefooter');
 
-      this.listenTo(app.UserPayments, 'reset', this.addAll)
+      this.listenTo(app.UserPayments, 'reset', this.addAll);
   	  this.listenTo(app.UserPayments, 'sync', this.render);
 
       app.UserPayments.fetch();
+
+      this.listenTo(app.Groups, 'sync', this.printGroups);
+
+      app.Groups.fetch();
+    },
+
+    printGroups: function() {
+    	app.Groups.each(this.printGroup, this);
+    },
+
+    printGroup: function( group ) {
+    	console.log('Group: ');
+    	console.log(group);
     },
 
     render: function() {
