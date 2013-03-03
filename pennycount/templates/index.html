@@ -30,13 +30,18 @@
 		</span>
 	</script>
 
-  <input type="text" id="friends-input" name="blah" />
-  <input type="button" value="Submit" />
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $("#friends-input").tokenInput("/friends", {
-      preventDuplicates: true
-    });
-  });
-  </script>
+	<div id="add-payment-div">
+	  <input type="text" id="title"/>
+	  <input type="text" id="value"/>
+	  <input type="text" id="friends-input"/>
+
+	  <input type="button" class="add-payment" value="Submit" />
+	  <script type="text/javascript">
+	  $(document).ready(function() {
+	    $("#friends-input").tokenInput("/friends", {
+	      preventDuplicates: true
+	    });
+	  });
+	  </script>
+  	</div>
 {% endblock %}

@@ -18,5 +18,4 @@ var app = app || {};
     });
 
 	Backbone.history.start();
-
 }());
