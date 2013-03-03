@@ -23,6 +23,7 @@ $(function() {
 		},
 
 		addPayment: function() {
+			console.log("DSADSA");
 			var payment = new app.GroupPayment();
 
 			var friends = $("#friends-input").val();

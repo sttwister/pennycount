@@ -50,19 +50,23 @@ $(function( $ ) {
 			this.$main.hide();
 			this.$footer.hide();
 		}
-
-		this.$footer.html(this.totalTemplate({
-				total: 123
-			}));
     },
 
     // Add a single user payment item to the list by creating a view for it, and
 	// appending its element to the `<ul>`.
 	addOne: function( userpayment ) {
 		console.log(userpayment);
+		console.log(userpayment.get('value'));
 
 		var view = new app.UserPaymentView({ model: userpayment });
-		$('#userpayment-list').append( view.render().el );
+		if (userpayment.get('value') < 0)
+		{
+			$('#user-receive-list').append( view.render().el );
+		}
+		else
+		{
+			$('#user-give-list').append( view.render().el );
+		}
 	},
 
 	// Add all items in the **UserPayments** collection at once.

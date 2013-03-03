@@ -3,48 +3,59 @@
 {% block content %}
 	<div class="container main">
 		<div class="row">
-			<div class="span12">
-				<div id="add-payment-div">
-				  <div class="pull-right box">
+			<div class="center-box">
+			  <div id="add-payment-div" class="box">
+			  	<div class="center90">
 					<input type="text" id="title" placeholder="Payment name"/>
 					<input type="text" id="value" placeholder="Ammount"/>
-					
-					<br/>
+				</div>
+				<br/>
+			  	<select multiple id="friends-input" class="chzn-select" data-placeholder="Choose some people to share the payment with"/>
+			  	
+			  	<input type="button" class="add-payment center" value="Add Payment" />
+			  </div>
 
-				  	<select multiple id="friends-input" class="chzn-select" data-placeholder="Choose some people to share the payment with"/>
-				  	
-				  	<input type="button" class="add-payment" value="Add Payment" />
-				  </div>
+			  <script type="text/javascript">
+			  $(document).ready(function() {
+		      $("#friends-input").ajaxChosen({
+		          type: 'GET',
+		          url: '/friends',
+		          dataType: 'json'
+		      }, function (data) {
+		          var results = [];
 
+		          $.each(data, function (i, val) {
+		              results.push({ value: val.id, text: val.name });
+		          });
 
-				  <script type="text/javascript">
-				  $(document).ready(function() {
-			      $("#friends-input").ajaxChosen({
-			          type: 'GET',
-			          url: '/friends',
-			          dataType: 'json'
-			      }, function (data) {
-			          var results = [];
-
-			          $.each(data, function (i, val) {
-			              results.push({ value: val.id, text: val.name });
-			          });
-
-			          return results;
-			      });
-				  });
-				  </script>
-			  	</div>
-		  	</div>
+		          return results;
+		      });
+			  });
+			  </script>
+			 </div>
 		</div>
 		
 		<hr>
 
-		<div class="row">
-			<div class="span6">
-				<ul id="userpayment-list"></ul>
+		<div id="to-header">
+			To give
+		</div>
+		<div class="payment-row" >
+			<div id="usergive-div">
+				<ul id="user-give-list"></ul>
 
-				<div class="footer" id="togivefooter"></div>
+				<div class="footer" id="to-give-footer"></div>
+			</div>
+		</div>
+
+		<div id="to-header">
+			To receive
+		</div>
+		<div class="payment-row" >
+			<div id="user-receive-div">
+				<ul id="user-receive-list"></ul>
+
+				<div class="footer" id="to-receive-footer"></div>
 			</div>
 		</div>
 	</div>
