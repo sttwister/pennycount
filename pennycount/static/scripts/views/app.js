@@ -59,6 +59,7 @@ $(function( $ ) {
 		console.log(userpayment.get('value'));
 
 		var view = new app.UserPaymentView({ model: userpayment });
+
 		if (userpayment.get('value') < 0)
 		{
 			$('#user-receive-list').append( view.render().el );

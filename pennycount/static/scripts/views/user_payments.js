@@ -16,6 +16,11 @@ $(function() {
 		},
 
 		render: function() {
+			var value = this.model.get('value');
+			if (value < 0)
+			{
+				this.model.set('value', -value);
+			}
 			this.$el.html( this.template( this.model.toJSON() ) );
 
 			return this;
