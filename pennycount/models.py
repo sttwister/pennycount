@@ -23,6 +23,7 @@ class GroupPayment(models.Model):
                 payment.user = user
                 payment.value = float(self.value) / user_count
                 payment.save()
+                payment.send_email()
 
 class Group(models.Model):
     user = models.ForeignKey(User, related_name='my_groups')
@@ -40,6 +41,13 @@ class Payment(models.Model):
 
     def __unicode__(self):
         return '%s for %s' % (self.group_payment, self.user)
+
+    def send_email(self):
+        from django.core.mail import send_mail
+        from django.template.loader import render_to_string
+        subject = "New payment: %s - %f" % (self.group_payment.title, self.value)
+        body = render_to_string('email/payment.txt', {'payment': self})
+        send_email(subject, body, 'from@example.com', [self.user.email])
 
 class UserPaymentManager(models.Manager):
 

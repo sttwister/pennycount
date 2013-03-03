@@ -15,7 +15,7 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pennycount.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pennycount.settings_heroku")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

@@ -128,7 +128,7 @@ INSTALLED_APPS = (
 
     'compressor',
     'social_auth',
-    #'south',
+    'south',
     'tastypie',
 )
 
@@ -194,3 +194,4 @@ COMPRESS_PRECOMPILERS = (
 )
 COMPRESS_ENABLED = True
 COMPRESS_ROOT = STATIC_ROOT
+
