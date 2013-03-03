@@ -27,14 +27,25 @@
 	<div id="add-payment-div">
 	  <input type="text" id="title"/>
 	  <input type="text" id="value"/>
-	  <input type="text" id="friends-input"/>
+    <hr>
+	  <select multiple id="friends-input" class="chzn-select" data-placeholder="Choose some people to share the payment with" style="width:350px;"/>
 
 	  <input type="button" class="add-payment" value="Submit" />
 	  <script type="text/javascript">
 	  $(document).ready(function() {
-	    $("#friends-input").tokenInput("/friends", {
-	      preventDuplicates: true
-	    });
+      $("#friends-input").ajaxChosen({
+          type: 'GET',
+          url: '/friends',
+          dataType: 'json'
+      }, function (data) {
+          var results = [];
+
+          $.each(data, function (i, val) {
+              results.push({ value: val.id, text: val.name });
+          });
+
+          return results;
+      });
 	  });
 	  </script>
   	</div>

@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/less" media="all" href="/static/assets/stylesheets/main.less" />
 
         <link rel="stylesheet" href="/static/assets/token-input/token-input.css">
+        <link rel="stylesheet" href="/static/assets/chosen/chosen.css">
         <!-- data-main attribute tells require.js to load
              scripts/main.js after require.js loads. -->
 
@@ -27,8 +28,9 @@
       {% endblock %}
 
       {# Lib #}
+      <script src="/static/scripts/lib/chosen.jquery.min.js"></script>
+      <script src="/static/scripts/lib/ajax-chosen.min.js"></script>
       <script src="/static/scripts/lib/jquery.cookie.js"></script>
-      <script src="/static/scripts/lib/jquery.tokeninput.js"></script>
       <script src="/static/scripts/lib/underscore-min.js"></script>
       <script src="/static/scripts/lib/backbone-min.js"></script>
       <script src="/static/scripts/lib/backbone-tastypie.js"></script>
@@ -38,17 +40,17 @@
       <script src="/static/assets/js/less-1.3.3.min.js"></script>
 
       {# Application #}
-      <script src="/static/scripts/models/group_payment.js"></script>
-      <script src="/static/scripts/collections/group_payments.js"></script>
-      <script src="/static/scripts/models/payment.js"></script>
-      <script src="/static/scripts/collections/payments.js"></script>
       <script src="/static/scripts/models/friend.js"></script>
-      <script src="/static/scripts/collections/friends.js"></script>
+      <script src="/static/scripts/models/group_payment.js"></script>
+      <script src="/static/scripts/models/payment.js"></script>
       <script src="/static/scripts/models/user_payment.js"></script>
+      <script src="/static/scripts/collections/friends.js"></script>
+      <script src="/static/scripts/collections/group_payments.js"></script>
+      <script src="/static/scripts/collections/payments.js"></script>
       <script src="/static/scripts/collections/user_payments.js"></script>
       <script src="/static/scripts/views/app.js"></script>
       <script src="/static/scripts/views/user_payments.js"></script>
-       <script src="/static/scripts/views/add_payment.js"></script>
+      <script src="/static/scripts/views/add_payment.js"></script>
       <script src="/static/scripts/routers/router.js"></script>
 
       <script src="/static/scripts/main.js"></script>
